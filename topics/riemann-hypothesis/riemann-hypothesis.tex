@@ -1,0 +1,82 @@
+\section{Riemann Hypothesis}
+
+This section introduces the Riemann Hypothesis (RH), explains its connection with the zeros of the Riemann zeta function, and presents two equivalent criteria discussed by Broughan \cite[Chapters 2, 4, and 7]{Broughan2017}.
+
+\subsection{The Zeta Function and Its Zeros}
+
+For $\operatorname{Re}(s)>1$, the Riemann zeta function is defined by
+\[
+ \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}
+ =\prod_p\left(1-p^{-s}\right)^{-1}.
+\]
+As established in the preceding section, it has a meromorphic continuation to $\mathbb{C}$, with a simple pole at $s=1$. Its functional equation is conveniently expressed using the completed zeta function
+\[
+ \xi(s)=\frac12s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s).
+\]
+The function $\xi$ is entire and satisfies $\xi(s)=\xi(1-s)$. Its zeros are exactly the nontrivial zeros of $\zeta(s)$. The trivial zeros of $\zeta$ occur at the negative even integers $-2,-4,-6,\ldots$; every other zero lies in the critical strip
+\[
+ 0<\operatorname{Re}(s)<1.
+\]
+These properties and the symmetries of the zeros are summarized in \cite[Section 2.2]{Broughan2017}.
+
+\begin{conjecture}[Riemann Hypothesis]
+Every nontrivial zero $\rho$ of the Riemann zeta function has real part
+\[
+ \operatorname{Re}(\rho)=\frac12.
+\]
+The vertical line $\operatorname{Re}(s)=\tfrac12$ is called the critical line.
+\end{conjecture}
+
+The functional equation and complex conjugation imply that nontrivial zeros occur symmetrically: if $\rho$ is a zero off the critical line, then $\overline{\rho}$, $1-\rho$, and $1-\overline{\rho}$ are also zeros. The hypothesis asserts that all such zeros lie on the axis of this symmetry.
+
+\subsection{The von Mangoldt Explicit Formula}
+
+Recall the Chebyshev function
+\[
+ \psi(x)=\sum_{n\leq x}\Lambda(n),
+\]
+where $\Lambda$ is the von Mangoldt function defined in the preceding section. The explicit formula expresses this prime-power sum in terms of the nontrivial zeros of $\zeta$.
+
+\begin{theorem}[von Mangoldt explicit formula]
+For $x>1$ that is not a prime power,
+\[
+ \psi(x)=x-\lim_{T\to\infty}
+ \sum_{\substack{\rho\text{ nontrivial zero of }\zeta\\
+                  |\operatorname{Im}(\rho)|\leq T}}
+ \frac{x^{\rho}}{\rho}
+ -\frac12\log\!\left(1-\frac{1}{x^2}\right)-\log(2\pi),
+\]
+where the sum is taken with zeros ordered by increasing absolute value of their imaginary parts. If $x$ is a prime power, the right-hand side gives the average of the left and right limits of $\psi$ at $x$. \cite[Theorem 2.1]{Broughan2017}
+\end{theorem}
+
+This formula makes the role of the zeta zeros in prime distribution explicit. Under RH, each nontrivial zero has the form $\rho=\tfrac12+i\gamma$, so $|x^{\rho}|=\sqrt{x}$; the locations of the zeros therefore govern the error in approximating $\psi(x)$ by $x$.
+
+\subsection{Equivalent Criteria}
+
+The next theorem gives a precise form of the relationship between RH and the prime number theorem. Here $\log$ denotes the natural logarithm.
+
+\begin{theorem}[Schoenfeld criterion]
+The Riemann Hypothesis is true if and only if
+\[
+ |\psi(x)-x|\leq\frac{\sqrt{x}\,\log^2x}{8\pi}
+ \qquad\text{for every }x\geq74.
+\]
+\cite[Theorem 4.9, Section 4.2]{Broughan2017}
+\end{theorem}
+
+Thus RH is equivalent not merely to an unspecified improvement in the prime number theorem, but to this explicit error bound for all real $x\geq74$.
+
+\begin{theorem}[Ramanujan--Robin criterion]
+Let $\sigma(n)=\sum_{d\mid n}d$ be the sum-of-divisors function, and let
+\[
+ \gamma=\lim_{m\to\infty}\left(\sum_{j=1}^{m}\frac1j-\log m\right)
+\]
+be the Euler--Mascheroni constant. The Riemann Hypothesis is true if and only if
+\[
+ \sigma(n)<e^{\gamma}n\log\log n
+ \qquad\text{for every integer }n\geq5041.
+\]
+\cite[Theorem 7.16, Section 7.9]{Broughan2017}
+\end{theorem}
+
+The Schoenfeld criterion translates RH into a bound for a prime-counting function, while the Ramanujan--Robin criterion translates it into an inequality for the sum of divisors. These are equivalent formulations, not proofs of RH; each states a different condition that would be necessary and sufficient for the hypothesis to hold.

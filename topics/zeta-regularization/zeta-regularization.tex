@@ -1,0 +1,290 @@
+\section{Advanced Topics: Zeta Regularization}
+
+This section studies zeta regularization as a method for extracting finite values from certain divergent sums and products. The method associates a Dirichlet series with a sequence, analytically continues that series beyond its original half-plane of convergence, and reads regularized values from the continuation. It also connects spectral data of operators with zeta-regularized determinants and illustrates the procedure through the Casimir effect. The discussion follows the course presentation on zeta regularization, complemented by classical formulas for the Riemann and Hurwitz zeta functions \cite{SotoVillada2026ZR,Apostol1976-xj}.
+
+\subsection{Divergent Series and Regularized Values}
+
+For a sequence $(a_n)_{n\geq1}$, the series $\sum_{n=1}^{\infty}a_n$ is defined in the ordinary sense by the limit of its partial sums
+\[
+ S_N=\sum_{n=1}^{N}a_n.
+\]
+If this limit does not exist as a finite number, the series diverges. A regularization does not alter this fact: it specifies a different procedure for assigning a value, and its result must not be confused with the ordinary sum.
+
+\begin{definition}[Zeta function associated with a sequence]
+Let $\Lambda=(\lambda_n)_{n\geq1}$ be a sequence of positive real numbers such that $\lambda_n\to\infty$. In any half-plane where the series converges absolutely, define
+\[
+ \zeta_\Lambda(s)=\sum_{n=1}^{\infty}\lambda_n^{-s},
+ \qquad \lambda_n^{-s}=\exp(-s\log\lambda_n),
+ \qquad s\in\mathbb{C}.
+\]
+The initial half-plane of convergence is determined by the growth of $\lambda_n$.
+\end{definition}
+
+When $\zeta_\Lambda$ has a meromorphic continuation to a neighborhood of the point where it is evaluated, that continuation can encode information not directly available from the original series. If the continuation exists on a connected domain, it is unique by the identity theorem. Its values outside the original convergence half-plane define the zeta-regularized quantities below.
+
+\begin{theorem}[Zeta-regularized power sums and products]
+Suppose $\zeta_\Lambda$ has a meromorphic continuation to a neighborhood of $s=-k$, where $k$ is a nonnegative integer, and is holomorphic there. Define
+\[
+ \operatorname{Reg}\sum_{n=1}^{\infty}\lambda_n^k:=\zeta_\Lambda(-k).
+\]
+If the continuation is also holomorphic at $s=0$, define the zeta-regularized product by
+\[
+ \operatorname{Reg}\prod_{n=1}^{\infty}\lambda_n
+ :=\exp\!\bigl(-\zeta_\Lambda'(0)\bigr).
+\]
+These are definitions made through analytic continuation; they do not assert that the corresponding ordinary sum or product converges.
+\end{theorem}
+
+\begin{proof}
+In a right half-plane where the defining series and its derivative converge locally uniformly, term-by-term differentiation gives
+\[
+ \zeta_\Lambda'(s)
+ =-\sum_{n=1}^{\infty}(\log\lambda_n)\lambda_n^{-s}.
+\]
+Formally setting $s=0$ in this identity would give $-\sum_n\log\lambda_n$, the logarithm of the ordinary product when that product is meaningful. The regularized product instead uses the value at zero of the analytic continuation of $\zeta_\Lambda'$. Exponentiation yields the stated definition. The power-sum prescription is likewise the continued value of the series at $s=-k$.
+\end{proof}
+
+\begin{example}[The natural numbers]
+For $\lambda_n=n$, the associated function is the Riemann zeta function,
+\[
+ \zeta_\Lambda(s)=\zeta(s)=\sum_{n=1}^{\infty}n^{-s},
+ \qquad \operatorname{Re}(s)>1.
+\]
+Its meromorphic continuation is regular at $s=-1$ and $s=0$, with
+\[
+ \zeta(-1)=-\frac{1}{12},
+ \qquad
+ \zeta'(0)=-\frac12\log(2\pi).
+\]
+Consequently,
+\[
+ \operatorname{Reg}\sum_{n=1}^{\infty}n=-\frac{1}{12},
+ \qquad
+ \operatorname{Reg}\prod_{n=1}^{\infty}n=\sqrt{2\pi}.
+\]
+\paragraph{Important note.} The displayed values do not mean that the divergent sum $1+2+3+\cdots$ or the infinite product $1\cdot2\cdot3\cdots$ is an ordinary finite number. In the usual sense, the partial sums grow without bound, and the partial products also grow without bound. The numbers $-1/12$ and $\sqrt{2\pi}$ are instead values assigned by zeta regularization; they are not limits of those partial sums or partial products. Such a value is meaningful only within the stated analytic framework: one must specify the associated zeta function and its meromorphic continuation, and the continuation must be regular at the point used in the definition. Thus these expressions should be read as regularized values, not as ordinary equalities for convergent sums or products \cite{SotoVillada2026ZR,Apostol1976-xj}.
+\end{example}
+
+\subsection{The Hurwitz Zeta Function and Lerch's Formula}
+
+The Hurwitz zeta function extends the Riemann zeta function by allowing the sequence to begin at a positive shift.
+
+\begin{definition}[Hurwitz zeta function]
+For $a>0$ and $\operatorname{Re}(s)>1$, define
+\[
+ \zeta(s,a)=\sum_{n=0}^{\infty}\frac{1}{(n+a)^s}.
+\]
+It has a meromorphic continuation in $s$ with a simple pole at $s=1$; in particular, its continuation is regular at $s=0$.
+\end{definition}
+
+\begin{theorem}[Values of the Hurwitz zeta function at zero]
+For $a>0$,
+\[
+ \zeta(0,a)=\frac12-a,
+ \qquad
+ \zeta'(0,a)=\log\Gamma(a)-\frac12\log(2\pi),
+\]
+where $\Gamma$ is the gamma function. The derivative identity is known as Lerch's formula.
+\end{theorem}
+
+\begin{proof}
+The Euler--Maclaurin summation formula gives the meromorphic continuation of $\zeta(s,a)$ and its values at nonpositive integers. At $s=0$ it yields $\zeta(0,a)=\tfrac12-a$. Its derivative at zero is Lerch's formula, relating the continued Hurwitz series to the gamma function \cite{Apostol1976-xj,SotoVillada2026ZR}.
+\end{proof}
+
+\begin{corollary}[Lerch's regularized product formula]
+For $a>0$,
+\[
+ \operatorname{Reg}\prod_{n=0}^{\infty}(n+a)
+ :=\exp\!\bigl(-\zeta'(0,a)\bigr)
+ =\frac{\sqrt{2\pi}}{\Gamma(a)}.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply the definition of the zeta-regularized product to $\lambda_n=n+a$, indexed from $n=0$, and substitute Lerch's formula:
+\[
+ \exp\!\bigl(-\zeta'(0,a)\bigr)
+ =\exp\!\left(-\log\Gamma(a)+\frac12\log(2\pi)\right)
+ =\frac{\sqrt{2\pi}}{\Gamma(a)}.
+\]
+\end{proof}
+
+\begin{example}[Two shifted products]
+Since $\Gamma(1)=1$ and $\Gamma(\tfrac12)=\sqrt{\pi}$, Lerch's formula gives
+\[
+ \operatorname{Reg}\prod_{n=0}^{\infty}(n+1)=\sqrt{2\pi},
+ \qquad
+ \operatorname{Reg}\prod_{n=0}^{\infty}\left(n+\frac12\right)=\sqrt{2}.
+\]
+The corresponding regularized sums of the constant sequence $1$ are, respectively, $\zeta(0,1)=-\tfrac12$ and $\zeta(0,\tfrac12)=0$.
+\end{example}
+
+\subsection{Special Values and Bernoulli Numbers}
+
+The values of $\zeta(s)$ at negative integers illustrate how analytic continuation converts power sums into finite special values. Let $B_m$ denote the Bernoulli numbers, defined by
+\[
+ \frac{t}{e^t-1}=\sum_{m=0}^{\infty}B_m\frac{t^m}{m!}
+ \qquad (|t|<2\pi).
+\]
+
+\begin{theorem}[Zeta values at nonpositive integers]
+For every nonnegative integer $m$,
+\[
+ \zeta(-m)=(-1)^m\frac{B_{m+1}}{m+1}.
+\]
+\end{theorem}
+
+\begin{proof}
+Euler--Maclaurin summation gives the continued Hurwitz zeta values
+\[
+ \zeta(-m,a)=-\frac{B_{m+1}(a)}{m+1},
+\]
+where the Bernoulli polynomials $B_j(a)$ are defined by
+\[
+ \frac{te^{at}}{e^t-1}=\sum_{j=0}^{\infty}B_j(a)\frac{t^j}{j!}.
+\]
+Setting $a=1$ gives $\zeta(-m,1)=\zeta(-m)=-B_{m+1}(1)/(m+1)$. The identity $B_j(1)=(-1)^jB_j$ yields the stated formula. This is the standard consequence of Euler--Maclaurin continuation for the zeta function \cite{Apostol1976-xj}.
+\end{proof}
+
+\begin{example}[Values used for regularized sums]
+The Bernoulli numbers $B_2=\tfrac16$ and $B_4=-\tfrac1{30}$ give
+\[
+ \zeta(-1)=-\frac{B_2}{2}=-\frac1{12},
+ \qquad
+ \zeta(-3)=-\frac{B_4}{4}=\frac1{120}.
+\]
+Accordingly, the zeta-regularized values of $\sum_{n\geq1}n$ and $\sum_{n\geq1}n^3$ are $-\tfrac1{12}$ and $\tfrac1{120}$, respectively. Neither assignment implies ordinary convergence.
+\end{example}
+
+\subsection{A Pole at the Origin and Finite-Part Prescriptions}
+
+The standard determinant definition requires $\zeta_\Lambda$ to be holomorphic at zero. If it instead has a simple pole, then $\zeta_\Lambda'(0)$ is not defined. One possible extension uses a coefficient of its Laurent expansion, but it is a separate finite-part prescription and must not be mistaken for the standard zeta determinant.
+
+\begin{definition}[Finite-part regularized product]
+Suppose
+\[
+ \zeta_\Lambda(s)=\frac{a_{-1}}{s}+a_0+a_1s+a_2s^2+\cdots
+\]
+near $s=0$. Define the finite-part regularized product, under this convention, by
+\[
+ \operatorname{Reg}_{\mathrm{fp}}\prod_n\lambda_n
+ :=\exp(-a_1),
+ \qquad
+ a_1=\operatorname*{Res}_{s=0}\frac{\zeta_\Lambda(s)}{s^2}.
+\]
+\end{definition}
+
+\begin{example}[An exponential sequence]
+For $\lambda_n=e^n$, $n\geq1$, the associated series is geometric when $\operatorname{Re}(s)>0$:
+\[
+ \zeta_\Lambda(s)=\sum_{n=1}^{\infty}e^{-ns}
+ =\frac{1}{e^s-1}
+ =\frac1s-\frac12+\frac{s}{12}+O(s^3).
+\]
+Here $a_1=\tfrac1{12}$, so the finite-part prescription gives
+\[
+ \operatorname{Reg}_{\mathrm{fp}}\prod_{n=1}^{\infty}e^n=e^{-1/12}.
+\]
+Since $\zeta_\Lambda$ has a pole at zero, this result does not come from $\exp(-\zeta_\Lambda'(0))$ \cite{SotoVillada2026ZR}.
+\end{example}
+
+\subsection{Spectral Zeta Functions and Zeta Determinants}
+
+Let $L$ be a positive operator with discrete positive eigenvalues $\lambda_j$, repeated according to multiplicity. In a right half-plane where the sum converges, its spectral zeta function is
+\[
+ \zeta_L(s)=\sum_j\lambda_j^{-s}=\operatorname{Tr}(L^{-s}).
+\]
+The spectrum incorporates information about the operator, including its geometry, boundary conditions, and eigenvalue multiplicities. If $L$ has zero eigenvalues, they are omitted from this sum; the resulting determinant is understood as the determinant on the complement of the kernel.
+
+\begin{definition}[Zeta-regularized determinant]
+Suppose $\zeta_L(s)$ has a meromorphic continuation to a neighborhood of $s=0$ and is holomorphic there. The zeta-regularized determinant of $L$ is
+\[
+ \det_{\zeta}L:=\exp\!\bigl(-\zeta_L'(0)\bigr).
+\]
+\end{definition}
+
+This definition extends the finite-dimensional identity $\det L=\prod_j\lambda_j$. Indeed, for finitely many positive eigenvalues,
+\[
+ -\left.\frac{d}{ds}\sum_j\lambda_j^{-s}\right|_{s=0}
+ =\sum_j\log\lambda_j,
+ \qquad
+ \det L=\exp\!\left(\sum_j\log\lambda_j\right).
+\]
+For infinitely many eigenvalues, the direct sum generally diverges, while analytic continuation may still define $\zeta_L'(0)$ and hence a determinant.
+
+\begin{example}[The Dirichlet Laplacian on an interval]
+For $L=-\frac{d^2}{dx^2}$ on $(0,\pi)$ with Dirichlet boundary conditions, the eigenvalues are $\lambda_n=n^2$, $n\geq1$. Thus
+\[
+ \zeta_L(s)=\sum_{n=1}^{\infty}(n^2)^{-s}=\zeta(2s),
+ \qquad
+ \zeta_L'(0)=2\zeta'(0)=-\log(2\pi).
+\]
+It follows that
+\[
+ \det_{\zeta}L=\exp\!\bigl(-\zeta_L'(0)\bigr)=2\pi.
+\]
+This example shows how a divergent infinite product of eigenvalues can be replaced by a value extracted from the spectral zeta function \cite{SotoVillada2026ZR}.
+\end{example}
+
+\subsection{Application: Casimir Energy}
+
+In quantum field theory, a mode of frequency $\omega_n$ contributes zero-point energy $\tfrac12\hbar\omega_n$. Summing over infinitely many modes often gives a divergent expression. A physical calculation compares configurations and subtracts a reference contribution; zeta regularization provides an analytic procedure for isolating the finite term in such a comparison \cite{SotoVillada2026ZR}.
+
+For two ideal parallel conducting plates separated by distance $d$, the regularized energy per unit area can be expressed using the series $\sum_{n\geq1}n^3$. Introduce a complex parameter $s$ and a positive scale $\mu$; for $\operatorname{Re}(s)>1$ the regulated expression is
+\[
+ \frac{E(s)}{A}=-\frac{\pi^2\hbar c}{6d^3}\,\mu^{s+3}\sum_{n=1}^{\infty}n^{-s}=-\frac{\pi^2\hbar c}{6d^3}\,\mu^{s+3}\zeta(s).
+\]
+Analytic continuation to $s=-3$, where the scale factor is $\mu^0=1$, gives
+\[
+ \frac{E_{\mathrm{reg}}}{A}
+ =-\frac{\pi^2\hbar c}{6d^3}\,\zeta(-3)
+ =-\frac{\pi^2\hbar c}{720d^3},
+\]
+where $\zeta(-3)=\tfrac1{120}$. The corresponding force per unit area is
+\[
+ \frac{F_C}{A}=-\frac{\partial}{\partial d}\left(\frac{E_{\mathrm{reg}}}{A}\right)
+ =-\frac{\pi^2\hbar c}{240d^4}.
+\]
+The negative sign indicates an attractive force in this idealized parallel-plate model. The finite value is obtained within the regularized and reference-subtracted calculation; it is not the ordinary value of the divergent sum $\sum n^3$.
+
+\subsection{Limitations and Further Directions}
+
+Zeta regularization requires more than a divergent sequence: one needs an associated series with a suitable meromorphic continuation and regularity at the point where a value or determinant is extracted. Different analytic families associated with the same formal expression need not define the same regularized quantity. The prescription must therefore be stated along with its continuation and assumptions.
+
+\begin{example}[The prime zeta function]
+The prime zeta function is
+\[
+ P(s)=\sum_{p}p^{-s},\qquad \operatorname{Re}(s)>1,
+\]
+where the sum ranges over primes. In its half-plane of convergence, Möbius inversion of the Euler product gives
+\[
+ P(s)=\sum_{k=1}^{\infty}\frac{\mu(k)}{k}\log\zeta(ks),
+\]
+with $\mu$ the Möbius function. The poles and zeros of $\zeta(ks)$ induce singularities in this representation, including points related to $1/k$ and $\rho/k$ for nontrivial zeros $\rho$ of $\zeta$. These singularities accumulate toward the origin as $k$ increases, so this standard representation does not supply a regular continuation at $s=0$ from which to define $P'(0)$ by the usual product formula. This illustrates why a zeta-regularized product cannot be assigned automatically to every sequence \cite{SotoVillada2026ZR}.
+\end{example}
+
+\begin{definition}[Superzeta function]
+Let $f$ be an entire function of finite order with zeros $y_k$, counted with multiplicity. For values of $s$ and $z$ where the series converges, a superzeta function associated with these zeros is
+\[
+ Z_f(s,z)=\sum_k(z-y_k)^{-s},
+\]
+with a consistent choice of branches for the complex powers. If it admits a continuation regular at $s=0$, one may define the associated regularized product by
+\[
+ D_f(z)=\exp\!\left(-\left.\frac{\partial}{\partial s}Z_f(s,z)\right|_{s=0}\right).
+\]
+This extends the same analytic idea from sequences of positive numbers to products formed from zeros of entire functions \cite{SotoVillada2026ZR}.
+\end{definition}
+
+\begin{proposition}[Multiplicative anomaly]
+Zeta-regularized determinants do not satisfy a universal multiplicative law. Even when the relevant determinants are defined, it need not be true that
+\[
+ \det_{\zeta}(AB)=\det_{\zeta}(A)\det_{\zeta}(B).
+\]
+The possible discrepancy is called the multiplicative anomaly.
+\end{proposition}
+
+\begin{proof}
+The finite-dimensional identity follows by multiplying eigenvalues. Zeta regularization instead analytically continues spectral sums and extracts their values at zero. This extraction need not preserve products of spectral data, so the finite-dimensional argument does not establish multiplicativity for regularized determinants. In applications, multiplicativity must be proved under the hypotheses of the particular operators being considered \cite{SotoVillada2026ZR}.
+\end{proof}
+
+Zeta regularization is best viewed as a controlled analytic procedure: it packages growth or spectral information into a zeta function, continues that function when possible, and extracts a finite value at a specified point. Its power lies in the structure encoded by the continuation, while its limitations are signaled by poles, accumulating singularities, and failures of familiar algebraic identities.

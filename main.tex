@@ -1,0 +1,66 @@
+
+\documentclass[11pt]{article}
+\usepackage[margin=2cm]{geometry}
+
+% Core packages
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,bookmarksopen=true,bookmarksnumbered=true,pdfpagemode=UseOutlines,linktoc=all]{hyperref}
+
+% Paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1\baselineskip}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\title{Analytic Number Theory}
+\author{Daniel Soto Villada}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+Classroom: 4-218\\
+Thursday, 14:00--16:00
+\end{center}
+
+Initial proposal of the topics to be covered, in order.
+
+\begingroup
+\small
+\setlength{\parskip}{0pt}
+\tableofcontents
+\endgroup
+\clearpage
+
+\input{topics/set-theory/set-theory}
+\input{topics/real-analysis/real-analysis}
+\input{topics/number-theory/number-theory}
+\input{topics/group-theory/group-theory}
+\input{topics/complex-analysis/complex-analysis}
+\input{topics/analytic-number-theory/analytic-number-theory}
+\input{topics/riemann-hypothesis/riemann-hypothesis}
+\input{topics/zeta-regularization/zeta-regularization}
+
+\paragraph{Note.} Throughout the course, we will try to include applications in statistics, econometrics, physics, and astronomy.
+
+\bibliographystyle{plain}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliography{bibliography}
+
+\end{document}
