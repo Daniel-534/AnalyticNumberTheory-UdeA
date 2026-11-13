@@ -1,0 +1,83 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\headheight}{14pt}
+\setlength{\headsep}{0.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+\fancyhead[R]{\small\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+  \fancyhead[R]{\small\today}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+
+\title{Tarea de la Clase 0}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent{\small Autor: Daniel Soto Villada}\par
+
+\begin{enumerate}
+    \item Calcule las valoraciones indicadas y escriba la factorización prima de cada entero:
+    \begin{enumerate}
+        \item $v_2(12)$ y $v_3(12)$;
+        \item $v_3(45)$ y $v_5(45)$;
+        \item $v_2(56)$ y $v_7(56)$;
+        \item $v_p(1)$ para un primo $p$ cualquiera.
+    \end{enumerate}
+    En cada caso, compruebe que el entero se recupera como el producto de las potencias primas correspondientes.
+
+    \item Para $y=5$, determine el conjunto $\mathbb{P}_5$. Luego indique cuáles de los números
+    \[
+      1,\;6,\;12,\;14,\;25,\;30,\;49
+    \]
+    pertenecen a $\mathbb{S}_5$. Justifique cada respuesta usando los factores primos de esos números.
+
+    \item Para $y=5$, escriba $\mathscr{P}_5(s)$ como producto de tres series geométricas. Después, calcule el entero
+    $n=2^{k_2}3^{k_3}5^{k_5}$ para cada una de estas ternas y escriba el término correspondiente $n^{-s}$:
+    \[
+      (k_2,k_3,k_5)=(1,0,0),\qquad (0,1,1),\qquad
+      (2,1,0),\qquad (0,0,2).
+    \]
+
+    \item Sea $p$ un primo y $k\in\Nzero$. Demuestre, usando la definición de valoración p-ádica, que
+    \[
+      v_p(p^k)=k.
+    \]
+    Demuestre también que $v_q(p^k)=0$ si $q$ es un primo distinto de $p$.
+
+    \item Sea $y\ge2$ y asigne a cada primo $p\in\mathbb{P}_y$ un exponente $k_p\in\Nzero$. Demuestre que la regla
+    \[
+      (k_p)_{p\in\mathbb{P}_y}\longmapsto
+      n=\prod_{p\in\mathbb{P}_y}p^{k_p}
+    \]
+    establece una correspondencia uno a uno entre esas listas de exponentes y los números de $\mathbb{S}_y$.
+    Use esta correspondencia y las series geométricas para justificar la igualdad finita
+    \[
+      \sum_{n\in\mathbb{S}_y}n^{-s}
+      =\mathscr{P}_y(s)
+      =\prod_{p\in\mathbb{P}_y}(1-p^{-s})^{-1},
+      \qquad \Re(s)>1.
+    \]
+\end{enumerate}
+
+\end{document}

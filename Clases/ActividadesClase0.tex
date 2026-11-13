@@ -1,0 +1,234 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\titleformat{\section}{\Large\bfseries}{\thesection}{0.7em}{}
+\titlespacing*{\section}{0pt}{1.5em}{0.6em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{observacion}{Observación}
+
+\setlength{\headheight}{14pt}
+\setlength{\headsep}{0.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+\fancyhead[R]{\small\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+  \fancyhead[R]{\small\today}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+\newcommand{\N}{\mathbb{N}}
+
+\title{Actividades de la Clase 0}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent{\small Autor: Daniel Soto Villada}\par
+
+
+La factorización única de los enteros permite traducir una suma sobre todos los
+números naturales a un producto sobre los primos. La prueba se construye primero
+para un conjunto finito de primos.
+
+En todo el documento, usamos $\N=\{1,2,3,\ldots\}$ y
+$\mathbb{N}_0=\{0,1,2,\ldots\}$.
+
+\section{Enunciado}
+
+Sea $s\in\mathbb{C}$ y escribamos $\sigma=\Re(s)$. Para
+$\sigma>1$, la serie
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}
+\]
+converge absolutamente. En esta región probaremos que
+\[
+  \zeta(s)=\prod_{p\ \mathrm{primo}}\frac{1}{1-p^{-s}}
+  \qquad (\Re(s)>1).
+\]
+El producto infinito se entenderá como el límite de los productos finitos
+tomados sobre los primos $p\le y$.
+
+\section{Demostración}
+
+Para un primo $p$ y un entero $n\in\mathbb{N}$, definimos la valoración p-ádica
+\[
+  v_p(n):=\max\{a\in\mathbb{N}_0:p^a\mid n\}.
+\]
+Es decir, $v_p(n)$ es el mayor exponente para el cual $p^a$ todavía divide a
+$n$.
+
+Para $n=1$, se tiene $v_p(1)=0$ para todo primo $p$. Por el teorema
+fundamental de la aritmética, todo entero $n\ge2$ se escribe de manera única
+como producto de potencias primas; para $n=1$ usamos el producto vacío. Así,
+\[
+  n=\prod_{p\le n}p^{v_p(n)},\qquad
+  n^{-s}=\prod_{p\le n}p^{-v_p(n)s}.
+\]
+Al sustituir esta expresión en la serie de zeta, obtenemos
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}\prod_{p\le n}p^{-v_p(n)s}.
+\]
+La unicidad de la factorización dice que cada entero aparece exactamente una vez
+cuando combinamos potencias de primos. Veamos cómo esa combinación produce un
+producto. Primero usamos solo el primo $2$:
+\[
+  1+2^{-s}+2^{-2s}+2^{-3s}+\cdots=\frac{1}{1-2^{-s}}.
+\]
+Al incorporar también el primo $3$, aplicamos la distributividad y agrupamos
+los términos según la potencia de $2$:
+\begin{align*}
+ &(1+2^{-s}+2^{-2s}+2^{-3s}+\cdots)
+   (1+3^{-s}+3^{-2s}+3^{-3s}+\cdots)\\
+ &=\underbrace{(1+3^{-s}+3^{-2s}+3^{-3s}+\cdots)}_{\text{potencia }2^0}\\
+ &\quad+\underbrace{(2^{-s}+2^{-s}3^{-s}+2^{-s}3^{-2s}+2^{-s}3^{-3s}+\cdots)}_{\text{potencia }2^1}\\
+ &\quad+\underbrace{(2^{-2s}+2^{-2s}3^{-s}+2^{-2s}3^{-2s}+2^{-2s}3^{-3s}+\cdots)}_{\text{potencia }2^2}\\
+ &\quad+\underbrace{(2^{-3s}+2^{-3s}3^{-s}+2^{-3s}3^{-2s}+2^{-3s}3^{-3s}+\cdots)}_{\text{potencia }2^3}+\cdots\\
+ &=\sum_{a,b\ge0}2^{-as}3^{-bs}
+  =\sum_{a,b\ge0}\frac{1}{(2^a3^b)^s}.
+\end{align*}
+Las primeras filas aportan respectivamente los denominadores
+\[
+  1,3,9,27,\ldots;\qquad 2,6,18,54,\ldots;\qquad
+  4,12,36,108,\ldots;\qquad 8,24,72,\ldots.
+\]
+Así aparecen una vez cada uno los enteros cuyos únicos factores primos son
+$2$ y $3$. Por ejemplo, $12=2^2\cdot3$ aparece en la fila de $2^2$ y en la
+columna de $3^1$. Incorporar $5$, luego $7$ y después los demás primos repite
+el mismo procedimiento.
+
+Fijemos un entero $y\ge2$. Denotemos por
+\[
+  \mathbb{P}_y=\{p\le y:p\text{ es primo}\},\qquad
+  \mathscr{P}_y(s)=\prod_{p\in\mathbb{P}_y}(1-p^{-s})^{-1}.
+\]
+Sea también
+\[
+  \mathbb{S}_y=\{n\in\mathbb{N}: v_p(n)>0\Rightarrow p\le y
+  \text{ para todo primo }p\}.
+\]
+En particular, $1\in\mathbb{S}_y$, pues $v_p(1)=0$ para todo primo $p$.
+
+Por ejemplo, para $y=5$ los primos permitidos son $2$, $3$ y $5$, y
+\[
+  \mathbb{S}_5=\{1,2,3,4,5,6,8,9,10,12,15,16,18,20,24,25,27,30,\ldots\}.
+\]
+En efecto, $12=2^2\cdot3$, $25=5^2$ y $30=2\cdot3\cdot5$ pertenecen a
+$\mathbb{S}_5$. En cambio, $14=2\cdot7$ no pertenece, porque contiene el
+factor primo $7>5$.
+
+Expandimos cada factor. Para un primo fijo $p\le y$, como
+$|p^{-s}|=p^{-\sigma}<1$, la serie geométrica converge y
+\[
+  (1-p^{-s})^{-1}=\sum_{k=0}^{\infty}p^{-ks}
+  =1+p^{-s}+p^{-2s}+p^{-3s}+\cdots.
+\]
+Sustituyendo esta igualdad para cada primo de $\mathbb{P}_y$ en el producto
+finito, tenemos
+\[
+  \mathscr{P}_y(s)=\prod_{p\in\mathbb{P}_y}
+          \left(\sum_{k_p=0}^{\infty}p^{-k_ps}\right).
+\]
+Veamos la distribución completa para $y=5$, donde los primos permitidos son
+$2$, $3$ y $5$. Hay tres paréntesis, y se elige un término de cada uno:
+\begin{align*}
+ P_5(s)
+ &=\left(\sum_{k_2=0}^{\infty}2^{-k_2s}\right)
+   \left(\sum_{k_3=0}^{\infty}3^{-k_3s}\right)
+   \left(\sum_{k_5=0}^{\infty}5^{-k_5s}\right)\\
+ &=\sum_{k_2=0}^{\infty}\sum_{k_3=0}^{\infty}\sum_{k_5=0}^{\infty}
+   2^{-k_2s}3^{-k_3s}5^{-k_5s}.
+\end{align*}
+Esto es la propiedad distributiva de siempre, aplicada a tres sumas: cada
+combinación de exponentes $(k_2,k_3,k_5)$ aporta un término. Por ejemplo,
+$(2,1,0)$ aporta $2^{-2s}3^{-s}5^0=12^{-s}$, mientras que $(0,0,2)$ aporta
+$25^{-s}$.
+
+Para un valor general de $y$, hacemos lo mismo: elegimos un exponente no
+negativo para cada primo $p\in\mathbb{P}_y$. En forma abreviada,
+\[
+  \mathscr{P}_y(s)=\sum_{(k_p)\in\mathbb{N}_0^{\mathbb{P}_y}}
+          \prod_{p\in\mathbb{P}_y}p^{-k_ps}.
+\]
+Aquí $\mathbb{N}_0^{\mathbb{P}_y}$ significa el conjunto de todas las listas
+$(k_p)_{p\in\mathbb{P}_y}$: una lista contiene un exponente para cada primo
+permitido.
+
+La distribución y la reagrupación son válidas porque las series convergen
+absolutamente. En efecto, la suma de los valores absolutos de los términos es
+\[
+  \sum_{(k_p)\in\mathbb{N}_0^{\mathbb{P}_y}}
+     \left|\prod_{p\in\mathbb{P}_y}p^{-k_ps}\right|
+  =\prod_{p\in\mathbb{P}_y}\left(\sum_{k=0}^{\infty}p^{-k\sigma}\right)
+  =\prod_{p\in\mathbb{P}_y}(1-p^{-\sigma})^{-1}<\infty.
+\]
+
+Cada lista de exponentes determina un entero.A la lista
+$(k_p)_{p\in\mathbb{P}_y}$ le asociamos el número
+\[
+  n=\prod_{p\in\mathbb{P}_y}p^{k_p}.
+\]
+Veamos cómo se calcula este producto con números concretos. Si $y=5$, los
+primos permitidos son $2$, $3$ y $5$, así que la fórmula queda
+$n=2^{k_2}3^{k_3}5^{k_5}$. Por ejemplo, para
+$(k_2,k_3,k_5)=(2,1,0)$ obtenemos
+$n=2^2\cdot3^1\cdot5^0=4\cdot3\cdot1=12$. Si elegimos
+$(k_2,k_3,k_5)=(0,2,1)$, obtenemos
+$n=2^0\cdot3^2\cdot5^1=1\cdot9\cdot5=45$. Cada lista de exponentes
+produce así un número $n$.
+
+Por definición, $\mathbb{S}_y$ contiene los números que no tienen
+ningún factor primo mayor que $y$. En la fórmula de $n$ solo multiplicamos
+primos $p\in\mathbb{P}_y$, es decir, primos que cumplen $p\le y$. Elevar
+uno de esos primos a una potencia no introduce factores primos nuevos. Por
+tanto, todos los factores primos de $n$ son $\le y$, y eso es precisamente
+lo que significa que $n\in\mathbb{S}_y$.
+
+En el primer ejemplo, los únicos factores primos de $12$ son $2$ y $3$,
+ambos menores o iguales que $5$; por eso $12\in\mathbb{S}_5$. Además, las
+leyes de los exponentes muestran que el sumando correspondiente a cualquier
+lista es precisamente
+\[
+  \prod_{p\in\mathbb{P}_y}p^{-k_ps}
+  =\left(\prod_{p\in\mathbb{P}_y}p^{k_p}\right)^{-s}
+  =n^{-s}.
+\]
+
+El teorema fundamental garantiza que no falta ni se repite ningún
+entero. Recíprocamente, si $n\in\mathbb{S}_y$, todos sus factores primos
+pertenecen a $\mathbb{P}_y$. Su factorización prima única proporciona una
+lista de exponentes $(k_p)_{p\in\mathbb{P}_y}$: usamos $k_p=0$ para los primos
+permitidos que no dividen a $n$. La unicidad de la factorización garantiza que
+esa lista es la única que produce $n$. Por tanto, las listas de exponentes
+corresponden exactamente, una a una, a los enteros de $\mathbb{S}_y$, y
+\[
+  \sum_{n\in\mathbb{S}_y}n^{-s}
+  =\mathscr{P}_y(s)
+  =\prod_{p\in\mathbb{P}_y}(1-p^{-s})^{-1},
+  \qquad y\ge2,\ \Re(s)>1.
+\]
+
+Hasta aquí queda demostrado el caso de un conjunto finito de primos: el producto
+$\mathscr{P}_y(s)$ tiene finitos factores, aunque cada factor geométrico sea una serie
+infinita. Para obtener toda la serie $\zeta(s)$ todavía debemos hacer tender
+a $y$ al infinito; ese paso se justifica más adelante.
+
+\end{document}
