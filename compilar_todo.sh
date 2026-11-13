@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "Iniciando la compilación de todos los archivos .tex..."
+echo "Iniciando la compilación de los documentos principales..."
 echo "----------------------------------------------------"
 
-# Busca recursivamente todos los archivos terminados en .tex
-find . -type f -name "*.tex" | while read -r archivo; do
+# Compila solo documentos independientes; los demás .tex son fragmentos incluidos.
+for archivo in ./main.tex ./Clases/ActividadesClase0.tex ./Tareas/TareaClase0.tex ./Diapositivas/Clase0_IntroduccionAlGrupoDeEstudio.tex; do
     # Obtiene la carpeta donde está el archivo y el nombre del archivo
     directorio=$(dirname "$archivo")
     nombre_archivo=$(basename "$archivo")
