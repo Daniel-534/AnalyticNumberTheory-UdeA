@@ -1,8 +1,12 @@
 \section{Set Theory}
 
-This section introduces basic set notation, relations, and equivalence classes. The presentation follows the treatment of these foundations in \cite[Chapter 1, especially Section 1.6]{Berberian1998-qc}.
+This section reviews the logical and set notation needed in proofs, then introduces relations and equivalence classes. The notation and set descriptions follow \cite[Section 1.1]{Berberian1998-qc}; the relation and quotient material follows \cite[Sections 1.2 and 1.6]{Berberian1998-qc}.
 
 \subsection{Basic Set Notation}
+
+A proposition is a declarative statement that is either true or false. For propositions $P$ and $Q$, the symbols $\neg P$, $P\land Q$, $P\lor Q$, $P\Rightarrow Q$, and $P\Longleftrightarrow Q$ mean negation, conjunction, inclusive disjunction, implication, and logical equivalence, respectively. In particular, $P\lor Q$ allows both $P$ and $Q$ to hold. The quantifiers $\forall x\in X$, $\exists x\in X$, and $\exists!x\in X$ mean “for every,” “there exists,” and “there exists exactly one,” with $x$ restricted to $X$.
+
+Set-builder notation describes a set by a property: $\{x\in X:P(x)\}$ consists of the elements of the specified ambient set $X$ for which $P(x)$ is true. The ambient set matters; when it is clear from context it may be omitted, but unrestricted descriptions such as “the set of all sets” are avoided.
 
 \begin{definition}[Subset and equality]
 Let $A$ and $B$ be sets. We say that $A$ is a subset of $B$, and write $A\subseteq B$, if every element of $A$ is also an element of $B$. The sets are equal if they have exactly the same elements; equivalently, $A=B$ if and only if $A\subseteq B$ and $B\subseteq A$.
@@ -33,11 +37,136 @@ For sets $X$ and $Y$, the Cartesian product is the set
 of ordered pairs.
 \end{definition}
 
+\subsection{Solved Examples}
+
+\begin{example}[Implication, converse, and inclusive or]
+For every integer $n$, $6\mid n$ implies $3\mid n$, since $6=2\cdot3$. The converse is false: $3\mid3$, but $6\nmid3$. The contrapositive, $3\nmid n\Rightarrow6\nmid n$, is true. Also, the statement “$6$ is divisible by $2$ or by $3$” is true even though both alternatives hold; mathematical “or” is inclusive.
+\end{example}
+
+\begin{example}[Quantifiers over a finite set]
+The statement
+\[
+  \forall x\in\{1,2,3,4\},\qquad
+  (x=1)\Longleftrightarrow(x^2<4)
+\]
+is true: for $x=1$ both conditions hold, and for $x=2,3,4$ both are false. There is also exactly one $d\in\{1,2,3,4,6,12\}$ such that $d^2=4$, namely $d=2$; in symbols, $\exists!d\in\{1,2,3,4,6,12\}:d^2=4$.
+\end{example}
+
+\begin{example}[Set-builder notation and the ambient set]
+The positive divisors of $12$ form the set
+\[
+  D_{12}=\{d\in\mathbb{N}:d\mid12\}=\{1,2,3,4,6,12\}.
+\]
+Changing the ambient set changes the result:
+\[
+  \{n\in\mathbb{Z}:-2\le n<4\}=\{-2,-1,0,1,2,3\},\qquad
+  \{x\in\mathbb{R}:-2\le x<4\}=[-2,4).
+\]
+The first set has six elements, while the second contains every real number in the indicated interval.
+\end{example}
+
+\begin{example}[Union, intersection, difference, and complement]
+Let $X=\{1,2,3,4,5,6,7,8\}$, $A=\{1,2,3,4\}$, and $B=\{2,4,6\}$. Then
+\[
+  A\cup B=\{1,2,3,4,6\},\quad
+  A\cap B=\{2,4\},\quad
+  A\setminus B=\{1,3\},\quad
+  X\setminus A=\{5,6,7,8\}.
+\]
+For example, $X\setminus(A\cup B)=\{5,7,8\}$, which is also $(X\setminus A)\cap(X\setminus B)$.
+\end{example}
+
+\begin{example}[Sets whose elements are themselves sets]
+Let $C=\{\{1\},\{1,2\},\varnothing\}$. Then $\{1\}\in C$, but $1\notin C$: the elements of $C$ are sets, not the numbers inside them. At the same time, $\{1\}\subseteq\{1,2\}$, and $\varnothing\subseteq\{1\}$. This distinguishes membership from inclusion.
+\end{example}
+
+\begin{example}[A Cartesian product with set-valued coordinates]
+Let $X=\{0,1\}$ and $Y=\{\{a\},\{a,b\}\}$. Then
+\[
+  X\times Y=\{(0,\{a\}),(0,\{a,b\}),(1,\{a\}),(1,\{a,b\})\}.
+\]
+The pair $(1,\{a\})$ belongs to this product, while $(\{a\},1)$ does not: ordered pairs remember which coordinate comes first, and the first coordinate must lie in $X$.
+\end{example}
+
 \subsection{Relations and Equivalence Relations}
 
 \begin{definition}[Relation]
 A relation from a set $X$ to a set $Y$ is a subset $R\subseteq X\times Y$. A relation in $X$ is a relation from $X$ to itself. We write $x\,R\,y$ when $(x,y)\in R$.
 \end{definition}
+
+\begin{definition}[Images and inverse images of a relation]
+Let $R\subseteq X\times Y$. For $A\subseteq X$ and $B\subseteq Y$, define the direct image of $A$ and the inverse image of $B$ by
+\[
+  \begin{aligned}
+    R[A]&=\{y\in Y:\text{there exists }x\in A
+      \text{with }(x,y)\in R\},\\
+    R^{-1}[B]&=\{x\in X:\text{there exists }y\in B
+      \text{with }(x,y)\in R\}.
+  \end{aligned}
+\]
+The domain and range of $R$ are, respectively, $\operatorname{dom}(R)=R^{-1}[Y]$ and $\operatorname{ran}(R)=R[X]$.
+\end{definition}
+
+\begin{definition}[Reverse relation]
+The reverse relation of $R$ is the relation from $Y$ to $X$ defined by
+\[
+  R^{\mathrm{op}}=\{(y,x)\in Y\times X:(x,y)\in R\}.
+\]
+Thus $R^{\mathrm{op}}[B]=R^{-1}[B]$ for every $B\subseteq Y$. The bracket notation distinguishes the inverse image $R^{-1}[B]$ from the reverse relation itself.
+\end{definition}
+
+\subsubsection{Solved Examples}
+
+\begin{example}[The strict order on a finite set]
+Let $X=\{1,2,3,4\}$ and define $xRy$ when $x<y$. Listing all pairs in $X\times X$ that satisfy the condition gives
+\[
+  R=\{(1,2),(1,3),(1,4),(2,3),(2,4),(3,4)\}.
+\]
+No pair of the form $(x,x)$ occurs, because no number is strictly less than itself.
+Its complement relative to $X\times X$ is $\{(x,y)\in X\times X:x\ge y\}$, the non-strict reverse order.
+\end{example}
+
+\begin{example}[Divisibility as a relation]
+On $X=\{1,2,3,4\}$, define $xRy$ when $x$ divides $y$. Checking each possible first coordinate gives
+\[
+  R=\{(1,1),(1,2),(1,3),(1,4),(2,2),(2,4),(3,3),(4,4)\}.
+\]
+This relation is reflexive and transitive, but not symmetric: $(2,4)\in R$ while $(4,2)\notin R$.
+\end{example}
+
+\begin{example}[A relation induced on a subset]
+Let $R$ be the strict order on $X=\{1,2,3,4\}$ from the first example, and take $A=\{1,3,4\}$. The relation induced on $A$ is $R\cap(A\times A)$, so
+\[
+  R\cap(A\times A)=\{(1,3),(1,4),(3,4)\}.
+\]
+Only pairs whose two coordinates both lie in $A$ remain.
+\end{example}
+
+\begin{example}[Direct image, inverse image, and reverse relation]
+Let $X=\{1,2,3,4\}$, $Y=\{a,b,c\}$, and
+\[
+  R=\{(1,a),(1,b),(2,b),(3,c)\}.
+\]
+For $A=\{1,3\}$ and $B=\{b,c\}$, we obtain
+\[
+  R[A]=\{a,b,c\},\qquad R^{-1}[B]=\{1,2,3\}.
+\]
+The domain is $\{1,2,3\}$, the range is $\{a,b,c\}$, and $R[\{2\}]=\{b\}$. Reversing every ordered pair gives
+\[
+  R^{\mathrm{op}}=\{(a,1),(b,1),(b,2),(c,3)\},
+\]
+whose image of $B$ is the same set $\{1,2,3\}$ as the inverse image $R^{-1}[B]$.
+\end{example}
+
+\begin{example}[Inclusion between subsets]
+Let $X=\{\varnothing,\{a\},\{b\},\{a,b\}\}$ and relate $U,V\in X$ by $U\preceq V$ when $U\subseteq V$. The relation consists of
+\begin{align*}
+R=\{&(\varnothing,\varnothing),(\varnothing,\{a\}),(\varnothing,\{b\}),(\varnothing,\{a,b\}),\\
+& (\{a\},\{a\}),(\{a\},\{a,b\}),(\{b\},\{b\}),(\{b\},\{a,b\}),\\
+& (\{a,b\},\{a,b\})\}.
+\end{align*}
+For instance, $R[\{\{a\}\}]=\{\{a\},\{a,b\}\}$. This example has sets as the elements being related; it is reflexive and transitive, but not symmetric.
+\end{example}
 
 \begin{definition}[Equivalence relation]
 A relation $\sim$ in a set $X$ is an equivalence relation if, for all $x,y,z\in X$, it is:
@@ -115,3 +244,69 @@ Taking $m=3$ gives a concrete partition of $\mathbb{Z}$. Each row below displays
 \caption{The equivalence classes of integers modulo $3$. Each row is one class; distinct rows are disjoint and together contain all integers.}
 \label{fig:equivalence-classes-mod-3}
 \end{figure}
+
+\subsubsection{Further Solved Examples}
+
+\begin{example}[Equality as the simplest equivalence relation]
+On any set $X$, define $x\sim y$ if and only if $x=y$. Then $[x]=\{x\}$ for every $x\in X$, and the quotient set is
+\[
+  X/{\sim}=\{\{x\}:x\in X\}.
+\]
+Thus, quotienting by equality does not combine distinct elements; it replaces each element by its singleton class.
+\end{example}
+
+\begin{example}[Subsets with the same number of elements]
+Let $X$ be the set of all subsets of $\{a,b,c\}$, and define $A\sim B$ when $A$ and $B$ have the same number of elements. The equivalence classes are
+\[
+  [\varnothing]=\{\varnothing\},\qquad
+  [\{a\}]=\{\{a\},\{b\},\{c\}\},
+\]
+\[
+  [\{a,b\}]=\{\{a,b\},\{a,c\},\{b,c\}\},\qquad
+  [\{a,b,c\}]=\{\{a,b,c\}\}.
+\]
+Every subset appears in exactly one class, according to its size, so the quotient has four elements.
+\end{example}
+
+\begin{example}[Angles differing by full turns]
+For real angles, define $\theta\sim\phi$ if $\theta-\phi\in2\pi\mathbb{Z}$. This is an equivalence relation because $0\in2\pi\mathbb{Z}$, negatives remain in $2\pi\mathbb{Z}$, and sums of its elements remain in it. The class of $\pi/4$ is
+\[
+  [\pi/4]=\{\pi/4+2\pi k:k\in\mathbb{Z}\}.
+\]
+All these angles determine the same point on the unit circle: $e^{i(\pi/4+2\pi k)}=e^{i\pi/4}$. Hence $\mathbb{R}/(2\pi\mathbb{Z})$ describes angles after identifying measurements that differ by complete turns.
+\end{example}
+
+\begin{example}[Fractions as classes of integer pairs]
+Let $S=\{(a,b)\in\mathbb{Z}\times\mathbb{Z}:b\ne0\}$ and define
+\[
+  (a,b)\sim(c,d)\quad\Longleftrightarrow\quad ad=bc.
+\]
+This is the equality relation for the fractions $a/b$ and $c/d$. Reflexivity and symmetry follow from equality; for transitivity, if $ad=bc$ and $cf=de$, then $adf=bcf=bde$, so $af=be$ because $d\ne0$. The class of $(1,2)$ is
+\[
+  [(1,2)]=\{(a,b)\in S:b=2a\},
+\]
+which contains $(2,4)$ and $(-3,-6)$. Each class represents one rational number, and the quotient set is a construction of $\mathbb{Q}$ from integer pairs.
+\end{example}
+
+\begin{example}[Functions with the same derivative]
+Let $\mathcal{F}$ be the set of differentiable functions $f:\mathbb{R}\to\mathbb{R}$, and define $f\sim g$ when $f'=g'$ everywhere. Equality of derivatives makes this an equivalence relation. By the mean value theorem, $f'=g'$ exactly when $f-g$ is constant. For $f(x)=x^2$, its class is
+\[
+  [f]=\{x\mapsto x^2+C:C\in\mathbb{R}\}.
+\]
+Indeed, $(x^2+7)'=2x$, whereas $(x^2+x)'=2x+1$.
+For example, $x^2+7$ and $x^2-1$ are in this class, while $x^2+x$ is not.
+\end{example}
+
+\begin{example}[Continuous functions with the same integral]
+On the continuous functions on $[0,1]$, define $f\sim g$ when
+\[
+  \int_0^1 f(x)\,dx=\int_0^1 g(x)\,dx.
+\]
+The class of the constant function $f(x)=1$ consists of all continuous $g$ with integral $1$. Direct computation gives
+\[
+  \int_0^1 2x\,dx=1,\qquad
+  \int_0^1(1+\sin(2\pi x))\,dx
+  =1+\left[-\frac{\cos(2\pi x)}{2\pi}\right]_0^1=1.
+\]
+Thus both $g(x)=2x$ and $g(x)=1+\sin(2\pi x)$ belong to this class, even though these functions differ pointwise.
+\end{example}
