@@ -11,3 +11,5 @@
 *.out
 *.toc
 *.synctex
+*.nav
+*.snm
