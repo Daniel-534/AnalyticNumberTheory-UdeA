@@ -1,0 +1,149 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
+\setmainfont{Latin Modern Roman}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+
+\setlength{\headheight}{14pt}
+\setlength{\headsep}{0.45cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+\fancyhead[R]{\small\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small Grupo de Estudio: Teoría Analítica de Números}
+  \fancyhead[R]{\small\today}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\card}[1]{\lvert #1\rvert}
+\newcommand{\Set}[1]{\left\{#1\right\}}
+
+\title{Tarea de la Clase 1\\\large Teoría de conjuntos}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-1.2cm}
+\noindent{\small Autor: Daniel Soto Villada}\par
+\vspace{0.35cm}
+\noindent Nombre: \rule{8cm}{0.4pt}\hfill Fecha: \rule{3cm}{0.4pt}
+
+\noindent\textbf{1.} Relacione cada concepto de la columna izquierda con un único significado de la columna derecha: trace una línea entre ellos. Hay \textbf{dos opciones sobrantes}; cada significado correcto se usa una sola vez.
+
+\vspace{0.2cm}
+\small
+\noindent
+\begin{minipage}[t]{0.28\textwidth}
+\textbf{Conceptos}
+\begin{enumerate}[label=\Alph*., leftmargin=*, itemsep=0.95em, topsep=0.4em]
+    \item $x\in A$
+    \item $A\subseteq B$
+    \item $A=B$
+    \item $\varnothing\subseteq A$
+    \item $\PP(A)$
+    \item $A\cup B$
+    \item $A\cap B$
+    \item $A\setminus B$
+    \item $A^c=X\setminus A$
+    \item $(a,b)$
+    \item $A\times B$
+    \item $\card{A\times B}=\card{A}\,\card{B}$
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.61\textwidth}
+\textbf{Significados}
+\begin{enumerate}[label=\arabic*., leftmargin=*, itemsep=0.38em, topsep=0.4em]
+    \item Reúne los elementos que están en ambos conjuntos; pertenecer a uno solo no basta.
+    \item Si los conjuntos son finitos, el número de pares que se forman es el producto del número de opciones para cada coordenada.
+    \item Conjunto de todos los subconjuntos de $A$, incluidos $\varnothing$ y $A$.
+    \item Afirma que $x$ es uno de los elementos del conjunto $A$.
+    \item Conjunto de los elementos de $A$ que no pertenecen a $B$; en general, invertir los conjuntos cambia el resultado.
+    \item Dos pares son iguales exactamente cuando coinciden sus primeras coordenadas y también sus segundas; cambiar el orden puede cambiar el par.
+    \item Conjunto de pares cuya primera coordenada se elige en $A$ y la segunda en $B$; intercambiar los factores puede cambiarlo.
+    \item Conjunto de los elementos de $X$ que no pertenecen a $A$; su definición depende del universo fijado.
+    \item Se cumple cuando todo elemento del primero también pertenece al segundo; compara conjuntos, no un elemento con un conjunto.
+    \item Contiene los elementos que pertenecen al primero \emph{o} al segundo, incluyendo los que pertenecen a ambos.
+    \item Se cumple si cada conjunto está incluido en el otro; tener igual número de elementos no es, por sí solo, suficiente.
+    \item Es subconjunto de cualquier conjunto, pues no existe un elemento suyo que pueda incumplir la condición de inclusión.
+    \item Basta con que los dos conjuntos tengan la misma cantidad de elementos, aunque sus elementos sean distintos.
+    \item Es elemento de todo conjunto, porque es subconjunto de todo conjunto.
+\end{enumerate}
+\end{minipage}
+
+\noindent\textbf{Reto.} Identifique las dos opciones sobrantes y explique brevemente qué confusión representa cada una.
+
+\noindent Para los puntos 2 y 3, seleccione una sola respuesta. Las opciones se presentan por comprensión.
+
+\noindent\textbf{2.} El universo está formado por los enteros desde cero hasta doce, incluyendo ambos extremos. El primer conjunto contiene los números pares de ese universo, y el segundo contiene los enteros estrictamente mayores que cuatro. ¿Cuál opción describe los elementos del primer conjunto que no pertenecen al segundo?
+
+\begin{enumerate}[label=\Alph*), leftmargin=1.2cm, itemsep=0.45em]
+    \item $\Set{x\in\mathbb{Z}:0\leq x\leq12,\ x\text{ es par},\ x\leq4}$
+    \item $\Set{x\in\mathbb{Z}:0\leq x\leq12,\ x\text{ es par},\ x<4}$
+    \item $\Set{x\in\mathbb{Z}:0\leq x\leq12,\ x\text{ es par o }x\leq4}$
+    \item $\Set{x\in\mathbb{Z}:0\leq x\leq12,\ x\text{ es par},\ x>4}$
+\end{enumerate}
+
+\noindent\textbf{3.} El universo está formado por todos los enteros desde menos ocho hasta ocho, incluyendo ambos extremos. El primer conjunto contiene los múltiplos de tres de ese universo; el segundo contiene los enteros pares positivos. ¿Cuál opción describe exactamente los elementos del universo que no pertenecen a ninguno de los dos conjuntos?
+
+\begin{enumerate}[label=\Alph*), leftmargin=1.2cm, itemsep=0.45em]
+    \item $\Set{x\in\mathbb{Z}:-8\leq x\leq8,\ x\text{ no es múltiplo de }3,\ (x\text{ es impar o }x\leq0)}$
+    \item $\Set{x\in\mathbb{Z}:-8\leq x\leq8,\ (x\text{ no es múltiplo de }3)\text{ o }(x\text{ es impar o }x\leq0)}$
+    \item $\Set{x\in\mathbb{Z}:-8\leq x\leq8,\ (x\text{ es múltiplo de }3)\text{ o }(x\text{ es par positivo})}$
+    \item $\Set{x\in\mathbb{Z}:-8\leq x\leq8,\ x\text{ no es múltiplo de }3,\ x\text{ es impar},\ x\leq0}$
+\end{enumerate}
+
+
+\noindent En los puntos 4 y 5, localice el primer razonamiento inválido. No basta con señalar que la conclusión es falsa: explique el error y responda lo que se pide.
+
+\noindent\textbf{4.} Un estudiante afirma que la siguiente identidad vale para cualesquiera conjuntos $A$, $B$ y $C$:
+\[
+A\setminus(B\cup C)=(A\setminus B)\cup(A\setminus C).
+\]
+Para justificarla, escribe, para un elemento arbitrario $x$:
+\begin{align*}
+x\in A\setminus(B\cup C)
+&\Longleftrightarrow x\in A\text{ y }x\notin B\cup C\\
+&\Longleftrightarrow x\in A\text{ y }(x\notin B\text{ o }x\notin C)\\
+&\Longleftrightarrow (x\in A\text{ y }x\notin B)\text{ o }(x\in A\text{ y }x\notin C).
+\end{align*}
+Indique cuál equivalencia falla y cuál conectiva debe aparecer en su lugar. Después, dé conjuntos finitos $A$, $B$ y $C$ para los que los dos lados de la identidad propuesta sean distintos, calcule ambos lados y escriba la identidad correcta.
+
+\noindent\textbf{5.} Otro estudiante sostiene que, para cualesquiera conjuntos $A$ y $B$,
+\[
+\PP(A\cup B)=\PP(A)\cup\PP(B).
+\]
+Su argumento comienza así: «Sea $S\in\PP(A\cup B)$. Entonces cada elemento de $S$ pertenece a $A$ o a $B$. Por consiguiente, $S\subseteq A$ o $S\subseteq B$».
+Señale el salto lógico injustificado. Construya conjuntos finitos $A$ y $B$ y un conjunto $S$ que refuten la igualdad. Finalmente, demuestre cuál de las dos inclusiones entre $\PP(A\cup B)$ y $\PP(A)\cup\PP(B)$ sí se cumple siempre.
+
+\noindent En los puntos 6 y 7, escriba demostraciones completas y justifique las inclusiones o igualdades elemento por elemento.
+
+\noindent\textbf{6.} Demuestre que, para cualesquiera conjuntos $A$ y $B$,
+\[
+A\subseteq B\quad\Longleftrightarrow\quad\PP(A)\subseteq\PP(B).
+\]
+Pruebe ambas direcciones. En la recíproca, explique cómo pasar de la inclusión entre conjuntos potencia a una afirmación sobre un elemento arbitrario de $A$.
+\emph{Pista.} Para cada $x\in A$, considere el conjunto unitario $\{x\}$ y pregúntese en qué conjunto potencia pertenece.
+
+\noindent\textbf{7.} Demuestre la siguiente caracterización, que muestra cuándo se puede intercambiar el orden de los factores sin cambiar el producto cartesiano:
+\[
+A\times B=B\times A
+\quad\Longleftrightarrow\quad
+A=B\text{ o }A=\varnothing\text{ o }B=\varnothing.
+\]
+Trate por separado los casos en que alguno de los conjuntos es vacío y aquellos en que ambos son no vacíos. En estos últimos, use la igualdad de pares ordenados para justificar las dos inclusiones entre $A$ y $B$.
+\emph{Pista.} Si ambos conjuntos son no vacíos, fije un elemento de uno de ellos y forme pares ordenados cuya primera coordenada recorra el otro conjunto. Use la igualdad de productos para determinar dónde debe pertenecer esa primera coordenada.
+
+\end{document}
