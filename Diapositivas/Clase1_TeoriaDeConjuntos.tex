@@ -1,0 +1,502 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\uselanguage{Spanish}
+\languagepath{Spanish}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+
+\definecolor{UdeAGreen}{HTML}{0D6939}
+\definecolor{DeepGreen}{HTML}{064629}
+\definecolor{LeafGreen}{HTML}{83B840}
+\definecolor{PaleGreen}{HTML}{E7F0E7}
+\definecolor{CardGreen}{HTML}{F5F8F3}
+\definecolor{Ink}{HTML}{173629}
+\definecolor{WarmGold}{HTML}{E5C45A}
+
+\usetheme{Boadilla}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{normal text}{fg=Ink,bg=PaleGreen}
+\setbeamercolor{background canvas}{bg=PaleGreen}
+\setbeamercolor{structure}{fg=UdeAGreen}
+\setbeamercolor{frametitle}{fg=white,bg=DeepGreen}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{subtitle}{fg=white!85}
+\setbeamercolor{block title}{fg=white,bg=UdeAGreen}
+\setbeamercolor{block body}{fg=Ink,bg=CardGreen}
+\setbeamercolor{block title example}{fg=DeepGreen,bg=LeafGreen!55}
+\setbeamercolor{block body example}{fg=Ink,bg=CardGreen}
+\setbeamercolor{block title alerted}{fg=white,bg=DeepGreen}
+\setbeamercolor{block body alerted}{fg=Ink,bg=CardGreen}
+\setbeamercolor{author in head/foot}{fg=white,bg=DeepGreen}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.1ex,leftskip=1em,rightskip=1em]{author in head/foot}%
+  \insertshorttitle\hfill Grupo de Estudio · UdeA\hfill\insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}%
+}
+\setbeamertemplate{itemize item}{\color{UdeAGreen}\small$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{LeafGreen}\scriptsize$\blacktriangleright$}
+\setlength{\leftmargini}{1.5em}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\card}[1]{\lvert #1\rvert}
+\newcommand{\Set}[1]{\left\{#1\right\}}
+
+\title[Teoría de conjuntos]{Teoría de conjuntos}
+\subtitle{Clase 1 · Lenguaje, operaciones y demostraciones}
+\author{Daniel Soto Villada}
+\institute{Grupo de Estudio de Teoría Analítica de Números\\Facultad de Ciencias Exactas y Naturales · Universidad de Antioquia}
+\date{12 de noviembre de 2026}
+
+\begin{document}
+
+{\setbeamercolor{background canvas}{bg=DeepGreen}
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=center] at ([xshift=-2cm]current page.east)
+            {\includegraphics[height=6.1cm,keepaspectratio]{LogoUdeA_Blanco.png}};
+    \end{tikzpicture}
+    \vspace{0.65cm}
+    {\color{WarmGold}\bfseries\large GRUPO DE ESTUDIO}\par
+    \vspace{0.35cm}
+    {\color{white}\bfseries\fontsize{29}{34}\selectfont TEORÍA ANALÍTICA\\DE NÚMEROS}\par
+    \vspace{0.55cm}
+    {\color{LeafGreen}\bfseries\large INICIO · PRIMERA UNIDAD}\par
+    \vspace{0.12cm}
+    {\color{white}\Large Teoría de conjuntos}\par
+    {\color{white!80}\normalsize Lenguaje, operaciones y demostraciones}\par
+    \vspace{0.75cm}
+    {\color{white}\large Daniel Soto Villada}\par
+    \vspace{0.15cm}
+    {\color{white!80}\small Facultad de Ciencias Exactas y Naturales · Universidad de Antioquia}\par
+    \vfill
+\end{frame}}
+
+\section{Conjuntos: notación y propiedades}
+\begin{frame}{Conjuntos}
+    \begin{definition}
+        Un conjunto es una colección bien definida de objetos distintos, llamados elementos. Si un objeto $x$ pertenece al conjunto $A$, escribimos $x\in A$; si no pertenece, escribimos $x\notin A$.
+    \end{definition}
+    \begin{columns}[T,onlytextwidth]
+        \column{.47\textwidth}
+        \begin{exampleblock}{Ejemplo}
+            Para $A=\Set{a,b,c}$, se tiene $a\in A$ y $d\notin A$.
+        \end{exampleblock}
+        \begin{block}{Criterio de igualdad}
+            Dos conjuntos son iguales cuando tienen los mismos elementos; el orden y las repeticiones no los alteran.
+        \end{block}
+        \column{.49\textwidth}
+        \centering
+    \input{FigurasClase1/Figura01_Conjunto.tex}
+        \small Los puntos interiores representan los elementos de $A$.
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Pertenencia}
+    \begin{block}{Definición}
+        Si $A$ es un conjunto y $x$ es uno de sus elementos, escribimos $x\in A$. Si no es elemento, escribimos $x\notin A$.
+    \end{block}
+    \begin{exampleblock}{Ejemplo}
+        Para $A=\Set{\text{rojo},\text{verde},\text{azul}}$,
+        \[
+          \text{verde}\in A,\qquad \text{amarillo}\notin A.
+        \]
+    \end{exampleblock}
+    \begin{alertblock}{Distinción de notación}
+        $\in$ relaciona un elemento con un conjunto. No significa lo mismo que $\subseteq$, que compara dos conjuntos.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Igualdad de conjuntos}
+    \begin{block}{Enunciado}
+        Sean
+        \[
+          A=\Set{x\in\ZZ:0\leq x\leq4\text{ y }x\text{ es par}},
+          \qquad B=\Set{0,2,4}.
+        \]
+        Entonces $A=B$.
+    \end{block}
+    \begin{block}{Demostración}
+        Si $x\in A$, entonces $x$ es un entero par entre $0$ y $4$; por tanto, $x\in\Set{0,2,4}=B$, y $A\subseteq B$.
+
+        Recíprocamente, cada elemento de $B$ es un entero par entre $0$ y $4$, así que pertenece a $A$; luego $B\subseteq A$. Como ambos conjuntos tienen los mismos elementos, $A=B$.
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Extensionalidad e identidad de los elementos}
+    \begin{columns}[T,onlytextwidth]
+        \column{.52\textwidth}
+        \begin{exampleblock}{Mismos elementos}
+            \[
+            \Set{1,2,2,3}=\Set{3,1,2}=\Set{1,2,3}.
+            \]
+            El orden no importa y repetir un elemento no crea uno nuevo.
+        \end{exampleblock}
+        \column{.44\textwidth}
+        \begin{alertblock}{Pero el tipo de objeto sí importa}
+            \[
+            1\ne\Set{1},\qquad \Set{1}\ne\Set{\Set{1}}.
+            \]
+            El elemento $1$ no es el conjunto cuyo único elemento es $1$.
+        \end{alertblock}
+    \end{columns}
+    \begin{exampleblock}{Tarea de programación}
+        \href{https://codeforces.com/problemset/problem/443/A}{\textit{Anton and Letters} (Codeforces)}.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Representación de conjuntos}
+    \begin{columns}[T,onlytextwidth]
+        \column{.47\textwidth}
+        \begin{block}{Por extensión}
+            Se enumeran sus elementos:
+            \[
+              A=\Set{2,4,6,8}.
+            \]
+        \end{block}
+        \column{.49\textwidth}
+        \begin{block}{Por comprensión}
+            Se indica una propiedad que cumplen:
+            \[
+              A=\Set{x\in\NN: x\text{ es par y }0<x<10}.
+            \]
+        \end{block}
+    \end{columns}
+    \begin{exampleblock}{Ejemplo infinito}
+        \[
+          P=\Set{n\in\NN:n\text{ es primo}}=\Set{2,3,5,7,11,\ldots}.
+        \]
+    \end{exampleblock}
+    \small En la notación $\Set{x\in X:P(x)}$, se consideran los elementos de $X$ que satisfacen $P$.
+\end{frame}
+
+\begin{frame}{Conjunto universo y comprensión}
+    \begin{block}{Conjunto definido dentro de un universo}
+        Para un conjunto $X$ y una propiedad $P$, escribimos
+        \[
+          A=\Set{x\in X:P(x)}.
+        \]
+        El universo $X$ especifica de dónde pueden venir los elementos.
+    \end{block}
+    \begin{exampleblock}{La misma propiedad, distintos universos}
+        \[
+        \Set{x\in\ZZ:x^2=1}=\Set{-1,1},\qquad
+        \Set{x\in\NN:x^2=1}=\Set{1},
+        \]
+        usando aquí $\NN=\Set{0,1,2,\ldots}$.
+    \end{exampleblock}
+    \begin{exampleblock}{Tarea de programación}
+        \href{https://codeforces.com/problemset/problem/520/A}{\textit{Pangram} (Codeforces)}.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Inclusión de conjuntos}
+    \begin{block}{Definición}
+        $A$ es subconjunto de $B$, y escribimos $A\subseteq B$, cuando
+        \[
+          \forall x\;(x\in A\Longrightarrow x\in B).
+        \]
+    \end{block}
+    \begin{exampleblock}{Ejemplo numérico}
+        Si $A=\Set{2,4}$ y $B=\Set{1,2,3,4,5}$, entonces $A\subseteq B$.
+    \end{exampleblock}
+    \begin{alertblock}{No confundir}
+        $2\in B$ es una afirmación de pertenencia; $\Set{2}\subseteq B$ es una afirmación de inclusión.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Diagrama de inclusión}
+    \centering
+    \input{FigurasClase1/Figura02_Inclusion.tex}
+    \begin{exampleblock}{Lectura del diagrama}
+        Si $A=\Set{a,b}$ y $B=\Set{a,b,c}$, entonces $A\subseteq B$.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Demostración de una inclusión}
+    \begin{block}{Enunciado}
+        Sean $A=\Set{4k:k\in\ZZ}$, el conjunto de múltiplos de $4$, y $B=\Set{2m:m\in\ZZ}$, el conjunto de enteros pares. Probaremos que $A\subseteq B$.
+    \end{block}
+    \begin{block}{Demostración}
+        Tomemos un elemento arbitrario $x\in A$. Por definición de $A$, existe $k\in\ZZ$ tal que $x=4k$. Definimos $m=2k$; como $k$ es entero, $m\in\ZZ$. Entonces
+        \[
+          x=4k=2(2k)=2m.
+        \]
+        Por definición de $B$, esto implica que $x\in B$. Como $x$ fue arbitrario, concluimos que $A\subseteq B$.
+    \end{block}
+    \begin{exampleblock}{Caso concreto}
+        $12\in A$ porque $12=4\cdot3$; tomando $m=2\cdot3=6$, también $12=2\cdot6$, así que $12\in B$.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Criterio de igualdad de conjuntos}
+    \begin{theorem}[Criterio de doble inclusión]
+        Para cualesquiera conjuntos $A$ y $B$,
+        \[
+          A=B\quad\Longleftrightarrow\quad A\subseteq B\text{ y }B\subseteq A.
+        \]
+    \end{theorem}
+    \begin{block}{Demostración}
+        Si $A=B$, tienen los mismos elementos, así que ambas inclusiones se cumplen.
+
+        Recíprocamente, supongamos $A\subseteq B$ y $B\subseteq A$. Para todo $x$, la primera inclusión da $x\in A\Rightarrow x\in B$, y la segunda da $x\in B\Rightarrow x\in A$. Así, $x\in A$ si y solo si $x\in B$; por extensionalidad, $A=B$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Ejemplo de doble inclusión}
+    Sean
+    \[
+      A=\Set{x\in\ZZ:x\text{ es par y }0\leq x\leq 8},\qquad
+      B=\Set{0,2,4,6,8}.
+    \]
+    \begin{enumerate}
+        \item Si $x\in A$, es un entero par entre $0$ y $8$; por tanto $x$ es uno de $0,2,4,6,8$. Luego $A\subseteq B$.
+        \item Si $x\in B$, es uno de $0,2,4,6,8$; cada uno es par y está entre $0$ y $8$. Luego $B\subseteq A$.
+    \end{enumerate}
+    \begin{exampleblock}{Conclusión}
+        Por el criterio de doble inclusión, $A=B$.
+    \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Conjunto vacío y conjuntos unitarios}
+    \begin{block}{Definiciones}
+        El conjunto sin elementos se denota $\varnothing$. Un conjunto con exactamente un elemento, como $\Set{a}$, se llama unitario.
+    \end{block}
+    \begin{theorem}
+        Para todo conjunto $A$, se cumple $\varnothing\subseteq A$.
+    \end{theorem}
+    \begin{block}{Demostración}
+        Si $\varnothing\nsubseteq A$, existiría un elemento $x\in\varnothing$ con $x\notin A$. Pero el conjunto vacío no tiene elementos. La suposición es imposible; por tanto $\varnothing\subseteq A$.
+    \end{block}
+    \begin{exampleblock}{Pertenencia e inclusión}
+        $\varnothing\subseteq\Set{a}$ siempre; en cambio, $\varnothing\in\Set{a}$ solo si $a=\varnothing$.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Conjunto potencia}
+    \begin{definition}
+        El conjunto potencia de $A$, denotado $\PP(A)$, es el conjunto de todos los subconjuntos de $A$; también se llama conjunto de partes de $A$:
+        \[
+          \PP(A)=\Set{S:S\subseteq A}.
+        \]
+    \end{definition}
+    \begin{exampleblock}{Ejemplo}
+        Si $A=\Set{a,b}$, entonces
+        \[
+          \PP(A)=\Set{\varnothing,\Set{a},\Set{b},\Set{a,b}}.
+        \]
+    \end{exampleblock}
+    \begin{alertblock}{Pertenencia e inclusión}
+        $a\in A$, pero $\Set{a}\subseteq A$ y $\Set{a}\in\PP(A)$. Son afirmaciones distintas.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Ejemplo: conjunto potencia de tres elementos}
+    \centering
+    \input{FigurasClase1/Figura03_ConjuntoPotencia.tex}
+    \begin{block}{Lectura del diagrama}
+        Para $A=\Set{a,b,c}$, el diagrama muestra sus ocho subconjuntos: $\card{\PP(A)}=2^3=8$. Cada flecha indica una inclusión inmediata.
+    \end{block}
+\end{frame}
+
+\section{Operaciones y propiedades}
+\begin{frame}{Unión e intersección}
+    \begin{columns}[T,onlytextwidth]
+        \column{.49\textwidth}
+        \begin{block}{Unión}
+            \[
+              A\cup B=\Set{x:x\in A\text{ o }x\in B}.
+            \]
+            El «o» es inclusivo: puede pertenecer a ambos.
+        \end{block}
+        \begin{exampleblock}{Ejemplo}
+            $\Set{1,2,3}\cup\Set{3,4}=\Set{1,2,3,4}$.
+        \end{exampleblock}
+        \column{.49\textwidth}
+        \begin{block}{Intersección}
+            \[
+              A\cap B=\Set{x:x\in A\text{ y }x\in B}.
+            \]
+            Se conservan los elementos comunes.
+        \end{block}
+        \begin{exampleblock}{Ejemplo}
+            $\Set{1,2,3}\cap\Set{3,4}=\Set{3}$.
+        \end{exampleblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Representación de unión e intersección}
+    \centering
+    \input{FigurasClase1/Figura04_UnionInterseccion.tex}\par
+    \vspace{.1cm}
+    \small El sombreado muestra la operación dentro del universo $X$.
+\end{frame}
+
+\begin{frame}{Diferencia y complemento}
+    \begin{columns}[T,onlytextwidth]
+        \column{.49\textwidth}
+        \begin{block}{Diferencia}
+            \[
+              A\setminus B=\Set{x\in A:x\notin B}.
+            \]
+            \begin{exampleblock}{Ejemplo}
+                $\Set{1,2,3,4}\setminus\Set{3,4,5}=\Set{1,2}$.
+            \end{exampleblock}
+        \end{block}
+        \column{.49\textwidth}
+        \begin{block}{Complemento}
+            Fijado un universo $X$ y $A\subseteq X$,
+            \[
+              A^c=X\setminus A.
+            \]
+            \begin{exampleblock}{Ejemplo}
+                Si $X=\Set{1,2,3,4,5}$ y $A=\Set{1,3,5}$, entonces $A^c=\Set{2,4}$.
+            \end{exampleblock}
+        \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo de cálculo de operaciones}
+    Sean $A=\Set{1,2,3,4}$ y $B=\Set{3,4,5}$, con universo $X=\Set{1,2,3,4,5,6}$.
+    \vspace{.2cm}
+    \[
+    \begin{array}{c|l}
+        \text{Operación} & \text{Resultado}\\\hline
+        A\cup B & \Set{1,2,3,4,5}\\
+        A\cap B & \Set{3,4}\\
+        A\setminus B & \Set{1,2}\\
+        B\setminus A & \Set{5}\\
+        A^c=X\setminus A & \Set{5,6}
+    \end{array}
+    \]
+    \begin{alertblock}{Observación}
+        $A\setminus B$ y $B\setminus A$ no tienen por qué ser iguales.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Inclusiones básicas}
+    \begin{theorem}
+        Para cualesquiera $A$ y $B$,
+        \[
+          A\cap B\subseteq A\subseteq A\cup B.
+        \]
+    \end{theorem}
+    \begin{block}{Demostración, elemento por elemento}
+        Si $x\in A\cap B$, entonces $x\in A$ y $x\in B$; en particular, $x\in A$. Así $A\cap B\subseteq A$.
+
+        Si $x\in A$, entonces cumple «$x\in A$ o $x\in B$»; por tanto $x\in A\cup B$. Así $A\subseteq A\cup B$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Identidad distributiva}
+    \begin{theorem}[Distributividad]
+        \[
+          A\cap(B\cup C)=(A\cap B)\cup(A\cap C).
+        \]
+    \end{theorem}
+    \begin{block}{Demostración por pertenencia}
+        Para cualquier $x$,
+        \begin{align*}
+          x\in A\cap(B\cup C)
+          &\Longleftrightarrow x\in A\text{ y }(x\in B\text{ o }x\in C)\\
+          &\Longleftrightarrow (x\in A\text{ y }x\in B)\text{ o }(x\in A\text{ y }x\in C)\\
+          &\Longleftrightarrow x\in(A\cap B)\cup(A\cap C).
+        \end{align*}
+        Los dos conjuntos tienen exactamente los mismos elementos; son iguales.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Leyes de De Morgan}
+    \begin{theorem}
+        Para $A,B\subseteq X$,
+        \[
+          (A\cup B)^c=A^c\cap B^c,\qquad
+          (A\cap B)^c=A^c\cup B^c.
+        \]
+    \end{theorem}
+    \begin{block}{Demostración de la primera identidad}
+        Para $x\in X$,
+        \begin{align*}
+          x\in(A\cup B)^c
+          &\Longleftrightarrow x\notin A\cup B\\
+          &\Longleftrightarrow (x\notin A)\text{ y }(x\notin B)\\
+          &\Longleftrightarrow x\in A^c\cap B^c.
+        \end{align*}
+        La segunda se prueba de manera análoga, intercambiando «y» con «o».
+    \end{block}
+\end{frame}
+
+\begin{frame}{Ejemplo: De Morgan en un universo finito}
+    Sea $X=\Set{1,2,3,4,5,6}$, $A=\Set{1,2,3,4}$ y $B=\Set{3,4,5}$.
+    \begin{align*}
+        (A\cup B)^c &= \Set{1,2,3,4,5}^c=\Set{6},\\
+        A^c\cap B^c &= \Set{5,6}\cap\Set{1,2,6}=\Set{6}.
+    \end{align*}
+    \begin{exampleblock}{Coinciden}
+        $(A\cup B)^c=A^c\cap B^c$.
+    \end{exampleblock}
+    \centering\small 
+\end{frame}
+
+\section{Producto cartesiano}
+\begin{frame}{Pares ordenados y producto cartesiano}
+    \begin{block}{Par ordenado}
+        $(a,b)=(c,d)$ si y solo si $a=c$ y $b=d$. El orden sí importa: en general $(a,b)\ne(b,a)$.
+    \end{block}
+    \begin{definition}[Producto cartesiano]
+        Para conjuntos $A$ y $B$,
+        \[
+          A\times B=\Set{(a,b):a\in A,\ b\in B}.
+        \]
+    \end{definition}
+    \begin{exampleblock}{Ejemplo}
+        Si $A=\Set{1,2}$ y $B=\Set{x,y,z}$, entonces
+        \[
+          A\times B=\Set{(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)}.
+        \]
+    \end{exampleblock}
+    \begin{exampleblock}{Tarea de programación}
+        \href{https://codeforces.com/problemset/problem/268/A}{\textit{Games} (Codeforces)}.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Diagrama del producto cartesiano}
+    \centering
+    \input{FigurasClase1/Figura05_ProductoCartesiano.tex}
+    \begin{exampleblock}{Interpretación}
+        Las filas corresponden a elementos de $A$, las columnas a elementos de $B$ y cada celda contiene un par de $A\times B$.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Cardinalidad del producto cartesiano}
+    \begin{theorem}
+        Si $A$ y $B$ son finitos, entonces
+        \[
+          \card{A\times B}=\card{A}\,\card{B}.
+        \]
+    \end{theorem}
+    \begin{block}{Demostración}
+        Para cada $a\in A$, los pares que comienzan con $a$ son
+        \[
+          \Set{(a,b):b\in B},
+        \]
+        y hay $\card{B}$ de ellos. Los grupos correspondientes a distintos $a$ no se superponen. Como hay $\card{A}$ elecciones de primera coordenada, el total es $\card{A}\card{B}$.
+    \end{block}
+    \begin{exampleblock}{Tarea de programación}
+        \href{https://codeforces.com/problemset/problem/228/A}{\textit{Is your horseshoe on the other hoof?} (Codeforces)}.
+    \end{exampleblock}
+\end{frame}
+
+\end{document}

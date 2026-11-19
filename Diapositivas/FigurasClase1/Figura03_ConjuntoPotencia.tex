@@ -1,0 +1,23 @@
+\begin{tikzpicture}[x=1cm,y=.76cm,>=stealth,setnode/.style={draw=DeepGreen,thick,rounded corners,fill=CardGreen,minimum width=1.65cm,minimum height=.56cm,inner sep=3pt}]
+    \node[setnode] (empty) at (0,-2.5) {$\varnothing$};
+    \node[setnode] (a) at (2.5,0) {$\Set{a}$};
+    \node[setnode] (ab) at (0,2.5) {$\Set{a,b}$};
+    \node[setnode] (b) at (-2.5,0) {$\Set{b}$};
+    \node[setnode] (c) at (0,.2) {$\Set{c}$};
+    \node[setnode] (ac) at (1.9,1.9) {$\Set{a,c}$};
+    \node[setnode] (abc) at (0,3.6) {$\Set{a,b,c}$};
+    \node[setnode] (bc) at (-1.9,1.9) {$\Set{b,c}$};
+
+    \draw[->,thick,UdeAGreen] (empty) -- (a);
+    \draw[->,thick,UdeAGreen] (empty) -- (b);
+    \draw[->,thick,UdeAGreen] (a) -- (ab);
+    \draw[->,thick,UdeAGreen] (b) -- (ab);
+    \draw[->,thick,UdeAGreen] (c) -- (ac);
+    \draw[->,thick,UdeAGreen] (c) -- (bc);
+    \draw[->,thick,UdeAGreen] (ac) -- (abc);
+    \draw[->,thick,UdeAGreen] (bc) -- (abc);
+    \draw[->,thick,UdeAGreen] (empty) -- (c);
+    \draw[->,thick,UdeAGreen] (a) -- (ac);
+    \draw[->,thick,UdeAGreen] (b) -- (bc);
+    \draw[->,thick,UdeAGreen] (ab) -- (abc);
+\end{tikzpicture}
