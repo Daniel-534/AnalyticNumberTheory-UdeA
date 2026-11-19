@@ -5,11 +5,14 @@
 % Core packages
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
+\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{multicol}
 \usepackage{float}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,bookmarksopen=true,bookmarksnumbered=true,pdfpagemode=UseOutlines,linktoc=all]{hyperref}
+\usepackage{xcolor}
+\definecolor{UdeAGreen}{HTML}{0D6939}
+\usepackage[colorlinks=true,linkcolor=UdeAGreen,citecolor=UdeAGreen,urlcolor=UdeAGreen,bookmarksopen=true,bookmarksnumbered=true,pdfpagemode=UseOutlines,linktoc=all]{hyperref}
 
 % Paragraphs
 \setlength{\parindent}{0pt}
@@ -25,7 +28,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 
-\title{Analytic Number Theory}
+\title{\includegraphics[width=0.58\textwidth]{LogoUdeaHorizontal.png}\\[0.65em]Analytic Number Theory}
 \author{Daniel Soto Villada}
 \date{}
 
@@ -34,7 +37,8 @@
 
 \begin{center}
 Classroom: 4-218\\
-Thursday, 14:00--16:00
+Thursday, 14:00--16:00\\
+Updated version: \href{https://github.com/Daniel-534/AnalyticNumberTheory-UdeA/blob/main/main.pdf}{\texttt{main.pdf}}
 \end{center}
 
 Initial proposal of the topics to be covered, in order.
@@ -57,10 +61,26 @@ Initial proposal of the topics to be covered, in order.
 
 \paragraph{Note.} Throughout the course, we will try to include applications in statistics, econometrics, physics, and astronomy.
 
+\section*{Use of Generative AI}
+OpenAI Prism's generative AI was used as a writing and typesetting aid in preparing this document. Under my direction, it helped organize in \LaTeX{} material from books and specific sections that I selected, develop accessible pedagogical explanations of advanced concepts, suggest less common examples, and create TikZ figures to visualize difficult ideas. The purpose of this assistance is to present the material clearly and consistently; it does not determine the academic or organizational design of the study group. The choice of books and sections, the topics and their order, the group's methodology and activities, the assessment approach, and the problems assigned in response to students' progress are my decisions. The group itself, its organization, and its administration at the University of Antioquia are my work. I review and revise AI-generated material, but errors may remain. Readers are encouraged to engage critically with the document and report suspected errors to me, Daniel Soto Villada, the instructor and author. Teaching and explanations in the study group are provided by me at the board.
+
 \bibliographystyle{plain}
 \clearpage
 \phantomsection
 \addcontentsline{toc}{section}{References}
 \bibliography{bibliography}
 
+\clearpage
+\section*{BibTeX Citation}
+\addcontentsline{toc}{section}{BibTeX Citation}
+Use the following BibTeX entry to cite the current version of this course outline:
+\begin{verbatim}
+@misc{SotoVilladaAnalyticNumberTheory,
+  author       = {Soto Villada, Daniel},
+  title        = {Analytic Number Theory},
+  year         = {2026},
+  howpublished = {\url{https://github.com/Daniel-534/AnalyticNumberTheory-UdeA/blob/main/main.pdf}},
+  note         = {Study Group in Analytic Number Theory, University of Antioquia. Accessed November 19, 2026}
+}
+\end{verbatim}
 \end{document}
